@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sympy-matching"
+version = "0.0.3"
+description = "SymPy <-> OmniMatch bridge: expression conversion, wildcards, replacement rules and constraints"
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "omnimatch",
+    "sympy",
+    "pydantic",
+]
+
+[project.optional-dependencies]
+tests = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["sympy_matching*"]
