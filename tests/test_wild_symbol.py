@@ -8,11 +8,8 @@ Covers:
 - Patterns without optional_value (plain dot wildcards)
 - Optional exponent wildcards matching bare bases (x**w_ vs subject x = x**1)
 """
-import sys
-import os
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 import sympy
 from sympy import symbols, Eq, Integer, sin, cos, Rational, simplify

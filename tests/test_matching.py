@@ -4,11 +4,8 @@
 Tests are parametrized across matching modes (one-to-one, many-to-one,
 code-generated, json-roundtrip) via the `match` fixture in conftest.py.
 """
-import sys
-import os
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 import sympy
 from sympy import symbols, sin, cos, tan, exp, log, Integer, Eq
