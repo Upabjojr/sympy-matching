@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 """Tests for JSON serialization roundtrip of SymPy-based patterns and matchers."""
-import sys
-import os
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 import pytest
 import sympy

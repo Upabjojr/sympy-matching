@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 """Tests for SymPy ↔ OmniMatch expression conversion."""
-import sys
-import os
 import importlib
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 import sympy
 from sympy import symbols, sin, cos, tan, exp, log, Eq, Integer, Rational, S

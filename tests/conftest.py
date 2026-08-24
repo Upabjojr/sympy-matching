@@ -7,13 +7,10 @@ Modes:
   - generated: CodeGenerator-produced code
   - json-roundtrip: ManyToOneMatcher serialized/deserialized via JSON
 """
-import sys
-import os
 from types import ModuleType
 
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from omnimatch.expressions.expressions import Wildcard, Operation
 from omnimatch.matching.one_to_one import match as match_one_to_one
