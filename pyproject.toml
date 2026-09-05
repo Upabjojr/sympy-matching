@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sympy-matching"
-version = "0.0.3"
+version = "0.0.4"
 description = "SymPy <-> OmniMatch bridge: expression conversion, wildcards, replacement rules and constraints"
 readme = "README.md"
 license = {file = "LICENSE"}
