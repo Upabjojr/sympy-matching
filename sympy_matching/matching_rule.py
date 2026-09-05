@@ -21,10 +21,10 @@ only), where it was called ``RubiRulePattern``/``SympyMatchingRule``.
 ``rubi_integrate.base_objects`` re-exports these names so Rubi imports stay unchanged.
 """
 import functools
+from dataclasses import dataclass, field
 from typing import Any, List, Tuple
 
 import sympy
-from pydantic import BaseModel
 
 from omnimatch.expressions.expressions import Pattern, to_omnimatch_expression
 from omnimatch.expressions.constraints import CustomConstraint
@@ -36,7 +36,8 @@ from sympy_matching.wild import WildSymbol
 from sympy_matching.constraint import SymPyMatchingConstraint, _resolve_with_substitution
 
 
-class SymPyReplacementPattern(BaseModel):
+@dataclass(kw_only=True)
+class SymPyReplacementPattern:
     """A single pattern-matching rule in SymPy form.
 
     - ``pattern``: a SymPy expression (with WildSymbols) to match.
@@ -44,14 +45,24 @@ class SymPyReplacementPattern(BaseModel):
       and/or bare SymPy Booleans like ``Ne(...)``, composed with Not/And/Or).
     - ``replacement``: a SymPy expression (with the same WildSymbols) produced on match.
     - ``module_name`` / ``rule_number``: an optional label for tracing/reporting.
+
+    A plain dataclass: keyword-only, as the pydantic model it replaces was, and
+    with the same small coercions (``constraints`` given as a list becomes a
+    tuple, ``rule_number`` an ``int``, ``module_name`` a ``str``).  It holds
+    SymPy objects and nothing validates them - pydantic only ever allowed them
+    through, and cost a compiled dependency for that.
     """
-    model_config = dict(arbitrary_types_allowed=True)
 
     pattern: Any
-    constraints: Tuple[Any, ...] = ()
     replacement: Any
+    constraints: Tuple[Any, ...] = field(default=())
     module_name: str = ''
     rule_number: int = 0
+
+    def __post_init__(self) -> None:
+        self.constraints = tuple(self.constraints) if self.constraints is not None else ()
+        self.module_name = '' if self.module_name is None else str(self.module_name)
+        self.rule_number = int(self.rule_number)
 
 
 def _collect_wild_symbols(expr) -> dict:
