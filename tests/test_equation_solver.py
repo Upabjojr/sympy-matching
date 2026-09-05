@@ -16,11 +16,8 @@ coefficient.
 Patterns use the WildSymbol type which participates in SymPy expression trees
 naturally and converts to OmniMatch wildcards through to_omnimatch_expression.
 """
-import sys
-import os
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 import sympy
 from sympy import symbols, sqrt, Eq, Rational, simplify, solve, Poly, cbrt, Integer
